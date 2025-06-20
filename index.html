@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alchat Sunglasses</title>
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: #000;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      color: #f5c518;
+      font-size: 28px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #ccc;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #f5c518;
+    }
+
+    .hero {
+      height: 90vh;
+      background: url('https://images.unsplash.com/photo-1592878849122-3f17fce94b47') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      color: #fff;
+    }
+
+    .hero button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background: #f5c518;
+      color: #0d0436;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background: #fff;
+    }
+
+    .product-section {
+      padding: 60px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .product-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #f5c518;
+    }
+
+    .product-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .product-card {
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      transition: all 0.5s ease;
+      animation: slideUp 1s ease forwards;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-card h3, .product-card p {
+      margin: 10px 0;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 0 20px 4px #0ff, 0 0 40px 6px #0ff inset;
+      transform: scale(1.05);
+    }
+
+    .product-showcase {
+      padding: 60px 20px;
+      background: #222;
+      text-align: center;
+    }
+
+    .product-showcase .section-title {
+      margin-bottom: 30px;
+      color: #f5c518;
+    }
+
+    .product-showcase .product-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .product-showcase .product-card {
+      background: #333;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(100px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .product-showcase .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-showcase .product-card h3, .product-showcase .product-card p {
+      margin: 10px 0;
+    }
+
+    .product-showcase .product-card:hover {
+      box-shadow: 0 0 20px 4px #0ff, 0 0 40px 6px #0ff inset;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(200px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(100px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      0% { transform: translateX(-100px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      0% { transform: translateX(100px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInBottom {
+      0% { transform: translateY(100px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      background: #000;
+      color: #e1dfdf;
+      margin-top: 100px;
+    }
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: #000;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      color: #f5c518;
+      font-size: 28px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #ccc;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #f5c518;
+    }
+
+    .hero {
+      height: 90vh;
+      background: url('https://images.unsplash.com/photo-1592878849122-3f17fce94b47') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      color: #fff;
+    }
+
+    .hero button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background: #f5c518;
+      color: #0d0436;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background: #fff;
+    }
+
+    .product-section {
+      padding: 60px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .product-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #f5c518;
+    }
+
+    .product-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .product-card {
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      transition: all 0.5s ease;
+      animation: slideUp 1s ease forwards;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-card h3, .product-card p {
+      margin: 10px 0;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 0 20px 4px #0ff, 0 0 40px 6px #0ff inset;
+      transform: scale(1.05);
+    }
+
+    .product-showcase {
+      padding: 60px 20px;
+      background: #222;
+      text-align: center;
+    }
+
+    .product-showcase .section-title {
+      margin-bottom: 30px;
+      color: #f5c518;
+    }
+
+    .product-showcase .product-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .product-showcase .product-card {
+      background: #333;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(100px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .product-showcase .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-showcase .product-card h3, .product-showcase .product-card p {
+      margin: 10px 0;
+    }
+
+    .product-showcase .product-card:hover {
+      box-shadow: 0 0 20px 4px #0ff, 0 0 40px 6px #0ff inset;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(200px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(100px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      background: #000;
+      color: #aaa;
+      margin-top: 100px;
+    }
+
+    /* 👇 New Intro Section */
+    .intro-section {
+      padding: 60px 40px;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .intro-container {
+      display: flex;
+      align-items: center;
+      max-width: 1200px;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+
+    .intro-image img {
+      width: 320px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .intro-text {
+      max-width: 600px;
+    }
+
+    .intro-text h2 {
+      color: #f5c518;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .intro-text p {
+      color: #ccc;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #f5c518;
+      color: #111;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #fff;
+    }
+    /* ===== About Me Section ===== */
+.about-me {
+  background-color: #fff;
+  color: #111;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.about-me h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.about-me p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #333;
+}footer {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 80px;
+  border-top: 1px solid #ccc;
+}
+
+.footer-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 12px;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #f5c518; /* Optional highlight color */
+}
+
+.hero {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1592878849122-3f17fce94b47') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fadeIn 2s ease-in;
+  position: relative;
+}
+
+.hero h2 {
+  font-size: 48px;
+  color: #fff;
+  margin-top: 40px;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 18px;
+  background: #f5c518;
+  color: #0d0436;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background: #fff;
+}
+
+/* 👁️ Eye Animation */
+.eye-container {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+.eye {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: 5px solid #000;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.pupil {
+  width: 30px;
+  height: 30px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 35px;
+  left: 35px;
+  transition: all 0.1s ease-out;
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Nishant's Portfolio</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  
+ <!-- 🔥 Hero Section with Animated Eyes -->
+<section class="hero" id="hero">
+    <div class="eye-container">
+      <div class="eye">
+        <div class="pupil"></div>
+      </div>
+      <div class="eye">
+        <div class="pupil"></div>
+      </div>
+    </div>
+  
+    <h2>Welcome to My Portfolio<br>I'm Nishant </h2>
+    <a href="#about" class="btn">View Below</a>
+  </section>
+  
+ <!-- 👇 New Section: Intro With Image Left -->
+<section class="intro-section" id="about">
+  <div class="intro-container">
+    <div class="intro-image">
+      <img src="hk.jpeg" alt="Nishant Jadhav" />
+    </div>
+    <div class="intro-text">
+      <h2>Hi, I'm Nishant Jadhav</h2>
+      <p>
+        I’m a passionate developer who specializes in AI, Machine Learning, Data Science, Python, and IoT. 
+        I love building smart systems like IoT-based Smart Irrigation and creating modern web and mobile apps. 
+        Explore my portfolio below!
+      </p>
+      <a href="#projects" class="btn">View Skill And Projects Below</a>
+    </div>
+  </div>
+</section>
+<br><br>
+<br><br>
+
+
+
+<section class="product-section" id="ai">
+    <h2 class="section-title">Artificial Intelligence</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="hk2.png" alt="Artificial Intelligence">
+        <h3>Artificial Intelligence</h3>
+        <p>Built smart systems using neural networks and AI models for automation and predictions.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="product-section" id="ml">
+    <h2 class="section-title">Machine Learning</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="hk3.png" alt="Machine Learning">
+        <h3>Machine Learning</h3>
+        <p>Worked with algorithms like regression, clustering, and classification using scikit-learn and TensorFlow.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="product-section" id="datasci">
+    <h2 class="section-title">Data Science</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="hk4.png"Data Science">
+        <h3>Data Science</h3>
+        <p>Proficient in Python, Pandas, and Matplotlib for data analysis and visualization.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="product-section" id="python">
+    <h2 class="section-title">Python Development</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="hk5.png" alt="Python Programming">
+        <h3>Python Programming</h3>
+        <p>Created tools and scripts for automation, AI projects, and system utilities.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="product-section" id="fullstack">
+    <h2 class="section-title">Full Stack Web</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="hk6.png" alt="Full Stack Development">
+        <h3>Full Stack Development</h3>
+        <p>Built responsive apps with HTML, CSS, JavaScript, React, Node.js, and MongoDB.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="product-section" id="iot">
+    <h2 class="section-title">Internet of Things (IoT)</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="hk7.png" alt="IoT Projects">
+        <h3>IoT Projects</h3>
+        <p>Developed smart systems using Arduino, Raspberry Pi, sensors, and real-time cloud integration.</p>
+      </div>
+    </div>
+  </section>
+  
+
+
+
+
+
+<!-- 👇 About Me Section -->
+<section class="about-me" id="about-me">
+    <div class="about-container">
+      <h2>About Me</h2>
+      <p>
+        Hi, I'm <strong>Nishant Jadhav</strong> — a passionate developer, tech enthusiast, and entrepreneur based in India. I specialize in Artificial Intelligence, Machine Learning, Data Science, Python programming, and full-stack web development.
+      </p>
+      <p>
+        I’ve completed certifications in Salesforce, IoT, and Embedded Systems, allowing me to build real-world solutions that integrate hardware with cloud-based software systems. I’m deeply interested in combining backend logic with beautiful frontend design.
+      </p>
+      <p>
+        Outside of tech, I'm creative at heart — I enjoy <strong>designing, acting</strong>, and building brands. I'm also the founder of <strong>Alchat</strong>, a sunglasses brand focused on innovation and style.
+      </p>
+      <p>
+        My journey is all about exploring, learning, and turning ideas into products that can impact the world. Let’s innovate together!
+      </p>
+    </div>
+  </section>
+  
+
+
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Nishant Jadhav – Portfolio</title>
+      <style>
+        /* ===== Global Styles ===== */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    
+        html {
+          scroll-behavior: smooth;
+        }
+    
+        body {
+          background-color: #111;
+          color: #fff;
+          overflow-x: hidden;
+        }
+    
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+    
+        /* ===== Product Showcase Section ===== */
+        .product-showcase {
+          padding: 60px 20px;
+          background-color: #f9f9f9;
+          text-align: center;
+        }
+    
+        .product-showcase .section-title {
+          font-size: 2rem;
+          color: #333;
+          margin-bottom: 30px;
+        }
+    
+        .single-product {
+          max-width: 700px;
+          margin: 0 auto;
+        }
+    
+        .single-product video {
+          width: 100%;
+          border-radius: 12px;
+          display: block;
+        }
+    
+        /* ===== Connect Detailed Section ===== */
+        .connect-detailed {
+          padding: 60px 20px;
+          background-color: #000;
+          color: #fff;
+          text-align: center;
+        }
+    
+        .connect-detailed .section-title {
+          font-size: 2.2rem;
+          margin-bottom: 40px;
+          color: #fff;
+        }
+    
+        .connect-list {
+          max-width: 800px;
+          margin: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          align-items: flex-end;
+        }
+    
+        .connect-card {
+          display: flex;
+          align-items: center;
+          background-color: #1a1a1a;
+          padding: 15px 25px;
+          border-radius: 12px;
+          width: 100%;
+          max-width: 600px;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          text-align: left;
+          color: #fff;
+          text-decoration: none;
+          box-shadow: 0 0 10px rgba(255,255,255,0.05);
+        }
+    
+        .connect-card:hover {
+          transform: translateX(-10px);
+          box-shadow: 0 0 15px rgba(255,255,255,0.15);
+        }
+    
+        .connect-card img {
+          width: 50px;
+          height: 50px;
+          object-fit: contain;
+          margin-right: 20px;
+        }
+    
+        .connect-info h3 {
+          font-size: 1.2rem;
+          margin-bottom: 5px;
+        }
+    
+        .connect-info p {
+          font-size: 0.95rem;
+          color: #ccc;
+        }
+    
+        .no-link {
+          cursor: default;
+          pointer-events: none;
+          opacity: 0.8;
+        }
+      </style>
+    </head>
+    <body>
+    
+     
+    
+      <!-- 👇 Connect With Me Section -->
+      <section class="connect-detailed" id="connect">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="connect-list">
+    
+          <!-- LinkedIn -->
+          <!-- LinkedIn -->
+<a href="https://www.linkedin.com/in/nishant-jadhav-895aa5360" class="connect-card" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+    <div class="connect-info">
+      <h3>LinkedIn</h3>
+      <p><strong>Verified ID:</strong> nishant-jadhav-895aa5360 ✅</p>
+      <p>linkedin.com/in/nishant-jadhav-895aa5360</p>
+    </div>
+  </a>
+  
+    
+       <!-- GitHub -->
+<a href="https://github.com/nishant007-ai" class="connect-card" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+    <div class="connect-info">
+      <h3>GitHub</h3>
+      <p><strong>Username:</strong> nishant007-ai ✅</p>
+      <p>github.com/nishant007-ai</p>
+    </div>
+  </a>
+  
+    
+       <!-- LeetCode -->
+<a href="https://leetcode.com/u/Nishant_Jadhav_007/" class="connect-card" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode">
+    <div class="connect-info">
+      <h3>LeetCode</h3>
+      <p><strong>Username:</strong> Nishant_Jadhav_007 ✅</p>
+      <p>leetcode.com/u/Nishant_Jadhav_007</p>
+    </div>
+  </a>
+  
+    
+          <!-- Email -->
+          <a href="mailto:nishant@example.com" class="connect-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
+            <div class="connect-info">
+              <h3>Email</h3>
+              <p>nishant@example.com</p>
+            </div>
+          </a>
+    
+          <!-- Phone -->
+          <div class="connect-card no-link">
+            <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone">
+            <div class="connect-info">
+              <h3>Phone</h3>
+              <p>+91 9158752508</p>
+            </div>
+          </div>
+    
+        </div>
+      </section>
+    
+    </body>
+    </html>
+    
+
+
+  
+  <!-- contact section Section -->  
+  <section id="contact" style="padding: 60px 20px; background: #111; text-align: center;">
+    <h2 style="font-size: 32px; color: #f5c518; margin-bottom: 30px;">Contact Us</h2>
+    <p style="color: white; margin-bottom: 20px;">Connect with us on social media</p>
+  
+    <div style="display: flex; justify-content: center; gap: 30px;">
+   <!-- Instagram -->
+<a href="https://www.instagram.com/nishant_.007" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+         alt="Instagram" 
+         width="60" 
+         height="60" 
+         style="border-radius: 50%;">
+  </a>
+  
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/your_facebook_page" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook" width="60" height="60" style="border-radius: 50%;">
+      </a>
+  
+      <!-- WhatsApp -->
+      <a href="https://wa.me/919158752508" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="60" height="60" style="border-radius: 50%;">
+      </a>
+    </div>
+  </section>
+  
+  <!-- 👇 Footer Section -->
+<footer>
+    <div class="footer-container">
+      <p>© 2025 Nishant Jadhav. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/nishant-jadhav-895aa5360" target="_blank">LinkedIn</a>
+        <a href="https://github.com/nishant007-ai" target="_blank">GitHub</a>
+        <a href="https://leetcode.com/u/Nishant_Jadhav_007/" target="_blank">LeetCode</a>
+        <a href="https://www.instagram.com/nishant_.007" target="_blank">Instagram</a>
+        <a href="mailto:nnjadhav2004@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+  
+
+  <script>
+    window.addEventListener("scroll", function () {
+      const sections = document.querySelectorAll('.product-section');
+      sections.forEach(section => {
+        if (section.getBoundingClientRect().top <= window.innerHeight / 1.3) {
+          section.classList.add('visible');
+        }
+      });
+    });
+  </script>
+    <!-- 👇 Paste this at the end of your HTML file -->
+    <script>
+        const pupils = document.querySelectorAll(".pupil");
+    
+        document.addEventListener("mousemove", (e) => {
+          pupils.forEach((pupil) => {
+            const rect = pupil.parentElement.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+    
+            const angle = Math.atan2(y, x);
+            const radius = 20;
+    
+            const moveX = Math.cos(angle) * radius;
+            const moveY = Math.sin(angle) * radius;
+    
+            pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          });
+        });
+      </script>
+    
+    </body>
+    </html>
+    
+</body>
+</html>
